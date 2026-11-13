@@ -1,0 +1,474 @@
+.dir-d {
+  --paper: #f6f1e7;
+  --olive: #5b5a3f;
+  --terracotta: #c98756;
+  --umber: #2e2a22;
+  --sand: #d8cdb8;
+
+  background: var(--paper);
+  color: var(--umber);
+  font-family: "Work Sans", sans-serif;
+  line-height: 1.5;
+}
+
+.dir-d h1, .dir-d h2, .dir-d h3 {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  color: var(--olive);
+  margin: 0;
+}
+
+.dir-d .eyebrow {
+  display: block;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--terracotta);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.dir-d .section-rule {
+  border: none;
+  border-top: 1px solid var(--sand);
+  margin: 0 0 2.5rem;
+}
+
+.dir-d .numeral {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  color: var(--sand);
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Nav --- */
+.dir-d .site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(246, 241, 231, 0.94);
+  border-bottom: 1px solid var(--sand);
+  backdrop-filter: blur(6px);
+}
+.dir-d .site-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+}
+.dir-d .wordmark {
+  font-family: "Fraunces", serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: var(--olive);
+}
+.dir-d .wordmark small {
+  display: block;
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+.dir-d .nav-links {
+  display: none;
+  gap: 2rem;
+}
+.dir-d .nav-links a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--umber);
+}
+.dir-d .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.dir-d .hamburger {
+  background: none;
+  border: 1px solid var(--olive);
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  color: var(--olive);
+}
+.dir-d .mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--sand);
+}
+.dir-d .mobile-menu[data-open="true"] { display: flex; }
+.dir-d .mobile-menu a {
+  text-decoration: none;
+  color: var(--olive);
+  font-size: 1rem;
+}
+
+@media (min-width: 960px) {
+  .dir-d .nav-links { display: flex; }
+  .dir-d .hamburger { display: none; }
+  .dir-d .mobile-menu { display: none !important; }
+}
+
+/* --- Hero --- */
+.dir-d .hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: flex-end;
+}
+.dir-d .hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dir-d .hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(46,42,34,0) 40%, rgba(46,42,34,.75) 100%);
+}
+.dir-d .hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 2.5rem 1.5rem;
+  color: var(--paper);
+  max-width: 640px;
+}
+.dir-d .hero-content .motto {
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+.dir-d .hero-content .motto-latin {
+  font-style: italic;
+  opacity: 0.85;
+  font-size: 1rem;
+}
+
+/* --- Statement --- */
+.dir-d .statement {
+  padding: 4rem 0 2.5rem;
+  max-width: 54ch;
+}
+.dir-d .statement p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+/* --- Section spacing --- */
+.dir-d section {
+  padding-block: 3rem;
+}
+.dir-d .container > .section-head {
+  max-width: 46ch;
+  margin-bottom: 2.5rem;
+}
+
+/* --- Pillars --- */
+.dir-d .pillars-list {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+.dir-d .pillar {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+  border-top: 1px solid var(--sand);
+  padding-top: 1.25rem;
+}
+.dir-d .pillar .numeral { font-size: 1.5rem; margin: 0; }
+.dir-d .pillar h3 { font-size: 1.3rem; margin-bottom: 0.4rem; }
+.dir-d .pillar p { margin: 0; color: var(--umber); opacity: 0.85; }
+
+@media (min-width: 720px) {
+  .dir-d .pillars-list { grid-template-columns: 1fr 1fr; }
+}
+
+/* --- Journeys --- */
+.dir-d .journeys-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .dir-d .journeys-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.dir-d .plate {
+  border: 10px solid #fff;
+  outline: 1px solid var(--sand);
+  box-shadow: 0 1px 0 var(--sand);
+}
+.dir-d .plate img {
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  width: 100%;
+}
+.dir-d .journey-card h3 {
+  font-size: 1.25rem;
+  margin: 1rem 0 0.3rem;
+}
+.dir-d .journey-card .place {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+.dir-d .journey-card p.dek {
+  margin: 0.5rem 0 0;
+  opacity: 0.85;
+}
+
+/* --- Houses strip --- */
+.dir-d .houses-strip {
+  background: var(--olive);
+  color: var(--paper);
+}
+.dir-d .houses-strip h2 { color: var(--paper); }
+.dir-d .houses-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+}
+.dir-d .houses-list li {
+  font-family: "Fraunces", serif;
+  font-size: 1.3rem;
+}
+.dir-d .houses-list .note {
+  display: block;
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 0.2rem;
+}
+
+/* --- Circle --- */
+.dir-d .circle-block {
+  border: 1px solid var(--sand);
+  padding: 2.5rem;
+  max-width: 60ch;
+}
+.dir-d .cta {
+  display: inline-block;
+  margin-top: 1.5rem;
+  text-decoration: none;
+  border: 1px solid var(--terracotta);
+  color: var(--terracotta);
+  padding: 0.8rem 1.6rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.dir-d .cta:hover { background: var(--terracotta); color: var(--paper); }
+.dir-d .cta.secondary {
+  border-color: var(--olive);
+  color: var(--olive);
+}
+.dir-d .cta.secondary:hover { background: var(--olive); color: var(--paper); }
+
+/* --- Testimonial --- */
+.dir-d .testimonial blockquote {
+  font-family: "Fraunces", serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  margin: 0;
+  max-width: 50ch;
+  line-height: 1.5;
+}
+.dir-d .testimonial cite {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  font-style: normal;
+}
+
+/* --- Footer --- */
+.dir-d footer.site-footer {
+  border-top: 1px solid var(--sand);
+  padding-block: 2.5rem;
+  font-size: 0.85rem;
+}
+.dir-d footer.site-footer .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+@media (min-width: 720px) {
+  .dir-d footer.site-footer .container { flex-direction: row; align-items: flex-start; }
+}
+.dir-d footer.site-footer .cities { display: flex; gap: 1.5rem; opacity: 0.75; }
+
+/* --- Journey detail page --- */
+.dir-d .journey-hero {
+  position: relative;
+  min-height: 55vh;
+  display: flex;
+  align-items: flex-end;
+}
+.dir-d .journey-hero img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.dir-d .journey-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(46,42,34,0) 35%, rgba(46,42,34,.8) 100%);
+}
+.dir-d .journey-hero-content {
+  position: relative;
+  z-index: 1;
+  color: var(--paper);
+  padding-block: 2.5rem;
+  max-width: 760px;
+}
+.dir-d .journey-hero-content h1 {
+  color: var(--paper);
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+.dir-d .for-whom {
+  max-width: 60ch;
+  font-size: 1.1rem;
+  padding-block: 2.5rem;
+}
+.dir-d .pillar-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.dir-d .pillar-chips li {
+  border: 1px solid var(--terracotta);
+  color: var(--terracotta);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.8rem;
+}
+.dir-d .moments-list {
+  display: grid;
+  gap: 2rem;
+  max-width: 68ch;
+}
+.dir-d .moment {
+  border-top: 1px solid var(--sand);
+  padding-top: 1.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+}
+.dir-d .moment h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+.dir-d .moment p { margin: 0; opacity: 0.85; }
+
+/* --- Forms / Enquire --- */
+.dir-d .tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--sand);
+  margin-bottom: 2rem;
+}
+.dir-d .tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.9rem 1.5rem 0.9rem 0;
+  margin-right: 1.5rem;
+  font-family: "Fraunces", serif;
+  font-size: 1.1rem;
+  color: var(--olive);
+  opacity: 0.55;
+  cursor: pointer;
+}
+.dir-d .tab-btn[aria-selected="true"] {
+  opacity: 1;
+  border-bottom-color: var(--terracotta);
+}
+.dir-d .tab-panel[hidden] { display: none; }
+
+.dir-d .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+.dir-d .field label {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+.dir-d .field input,
+.dir-d .field textarea,
+.dir-d .field select {
+  font: inherit;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--sand);
+  background: #fff;
+  color: var(--umber);
+}
+.dir-d .field textarea { min-height: 120px; resize: vertical; }
+.dir-d .field .hint { font-size: 0.78rem; opacity: 0.6; text-transform: none; letter-spacing: normal; }
+.dir-d .field-row {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .dir-d .field-row { grid-template-columns: 1fr 1fr; }
+}
+.dir-d .checkbox-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
+}
+.dir-d .checkbox-field input { margin-top: 0.3rem; }
+
+.dir-d .contact-alt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid var(--sand);
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+}
+.dir-d .contact-alt a { color: var(--terracotta); text-decoration: underline; }
+
+.dir-d .confirmation {
+  border: 1px solid var(--terracotta);
+  padding: 2rem;
+  max-width: 50ch;
+}
+.dir-d .confirmation[hidden] { display: none; }
+
+.dir-d .houses-detail {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  margin-top: 1.5rem;
+}
+@media (min-width: 640px) {
+  .dir-d .houses-detail { grid-template-columns: repeat(3, 1fr); }
+}
+.dir-d .house-card {
+  border: 1px solid var(--sand);
+  padding: 1.5rem;
+}
+.dir-d .house-card h3 { font-size: 1.2rem; }
+.dir-d .house-card p { margin: 0.4rem 0 0; opacity: 0.75; font-size: 0.9rem; }

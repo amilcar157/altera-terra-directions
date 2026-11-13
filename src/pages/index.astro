@@ -1,0 +1,72 @@
+---
+const __rawBase = import.meta.env.BASE_URL;
+const __base = __rawBase.endsWith("/") ? __rawBase.slice(0, -1) : __rawBase;
+import "../styles/base.css";
+
+const directions = [
+  {
+    href: "/directions/d-atelier/",
+    label: "D · Atelier",
+    desc: "Warm, artisanal, notebook-bound. Olive, sand and terracotta; Fraunces + Work Sans.",
+  },
+  {
+    href: "/directions/e-cinema/",
+    label: "E · Cinéma",
+    desc: "Almost no text, full-bleed scenes, a slow cinematic scroll. Near-black, ivory, brass.",
+  },
+  {
+    href: "/directions/f-carnet/",
+    label: "F · Carnet de Voyage",
+    desc: "A travel-magazine feature: cover, columns, captions. Newsprint, ink-blue, rouge.",
+  },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Altera Terra — Design directions</title>
+  <meta name="description" content="Three new visual directions for Altera Terra, presented as navigable prototypes." />
+  <link rel="icon" type="image/svg+xml" href={`${__base}/favicon.svg`} />
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #111;
+      color: #f5f3ee;
+      margin: 0;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 4rem 1.5rem; }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    p.lede { opacity: 0.75; max-width: 60ch; margin-bottom: 3rem; }
+    .cards { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+    @media (min-width: 720px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+    .card {
+      border: 1px solid rgba(245,243,238,.2);
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card h2 { font-size: 1.1rem; margin: 0 0 0.75rem; }
+    .card p { font-size: 0.9rem; opacity: 0.75; margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Altera Terra — three new directions</h1>
+    <p class="lede">
+      Prototypes D, E and F, each a complete Home / Journey / Enquire set, distinct from the three
+      directions already explored (A · Quiet Luxury, B · Nocturne, C · Héritage).
+    </p>
+    <div class="cards">
+      {directions.map((d) => (
+        <a class="card" href={`${__base}${d.href}`}>
+          <h2>{d.label}</h2>
+          <p>{d.desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</body>
+</html>

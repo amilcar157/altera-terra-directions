@@ -1,0 +1,148 @@
+---
+const __rawBase = import.meta.env.BASE_URL;
+const __base = __rawBase.endsWith("/") ? __rawBase.slice(0, -1) : __rawBase;
+import SEOHead from "../../../components/SEOHead.astro";
+import LangSwitcher from "../../../components/LangSwitcher.astro";
+import ECinemaFonts from "../../../components/fonts/ECinemaFonts.astro";
+import "../../../styles/base.css";
+import "../../../styles/e-cinema.css";
+import { CTA_PRIMARY, JOURNEYS } from "../../../data/brand";
+import { PHOTOS, unsplashUrl, unsplashSrcSet } from "../../../data/images";
+
+const journey = JOURNEYS.kyoto;
+const others = [
+  { ...JOURNEYS.karo, photo: PHOTOS.eSafari },
+  { ...JOURNEYS.cyclades, photo: PHOTOS.eCyclades },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SEOHead
+    title={`Altera Terra — Cinéma | ${journey.title}`}
+    description={`${journey.title}: ${journey.dek} A journey composed to order by Altera Terra — no price list, only the shape of what you need.`}
+    path="/directions/e-cinema/journey/"
+  />
+  <ECinemaFonts />
+</head>
+<body class="dir-e">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-nav solid" id="site-nav">
+    <div class="container">
+      <a href={`${__base}/directions/e-cinema/`} class="wordmark">Altera Terra</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href={`${__base}/directions/e-cinema/`}>Home</a>
+        <a href={`${__base}/directions/e-cinema/journey/`} aria-current="page">Journey</a>
+        <a href={`${__base}/directions/e-cinema/enquire/`}>Enquire</a>
+      </nav>
+      <div class="nav-right">
+        <LangSwitcher current="en" />
+        <button class="hamburger" aria-expanded="false" aria-controls="mobile-menu" id="menu-toggle">
+          <span class="sr-only">Open menu</span>
+          ☰
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="mobile-menu" data-open="false" aria-label="Mobile">
+      <a href={`${__base}/directions/e-cinema/`}>Home</a>
+      <a href={`${__base}/directions/e-cinema/journey/`}>Journey</a>
+      <a href={`${__base}/directions/e-cinema/enquire/`}>Enquire</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="journey-page-hero">
+      <img
+        src={unsplashUrl(PHOTOS.eKyoto.id, 1600)}
+        srcset={unsplashSrcSet(PHOTOS.eKyoto.id, [640, 960, 1280, 1600, 1920])}
+        sizes="100vw"
+        alt={journey.alt}
+        loading="eager"
+        width="1600"
+        height="960"
+      />
+      <div class="container journey-page-hero-content">
+        <p class="meta">{journey.place}</p>
+        <h1>{journey.title}</h1>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="content-section">
+        <p>{journey.forWhom}</p>
+        <p style="opacity:.7; font-style: italic; margin-top: 1rem;">
+          Composed to order — there is no price list, only the shape of what a family like this one needs.
+        </p>
+        <ul class="pillar-chips" aria-label="Pillars involved in this journey">
+          {journey.pillarsInvolved.map((p) => <li>{p}</li>)}
+        </ul>
+      </section>
+
+      <section class="content-section" aria-labelledby="moments-heading">
+        <p class="meta">Five Moments</p>
+        <h2 id="moments-heading" class="sr-only">How the five days were composed</h2>
+        <ol class="moments-list" style="list-style:none;">
+          {journey.moments?.map((m, i) => (
+            <li class="moment">
+              <span class="num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3>{m.title}</h3>
+                <p>{m.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </div>
+
+    <section aria-labelledby="others-heading">
+      <h2 id="others-heading" class="sr-only">Other journeys we have composed</h2>
+      <div class="journeys-strip">
+        {others.map((o) => (
+          <div class="journey-scene">
+            <img
+              src={unsplashUrl(o.photo.id, 800)}
+              srcset={unsplashSrcSet(o.photo.id, [400, 600, 800, 1000])}
+              sizes="(min-width: 900px) 33vw, 100vw"
+              alt={o.alt}
+              loading="lazy"
+              width="800"
+              height="1000"
+            />
+            <div class="label">
+              <p class="place">{o.place}</p>
+              <h3>{o.title}</h3>
+              <span class="sr-only">{o.dek}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="content-section" style="text-align:center;">
+        <h2 class="sr-only">Begin the conversation</h2>
+        <a class="cta" href={`${__base}/directions/e-cinema/enquire/`}>{CTA_PRIMARY}</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="dir-e-footer">
+    <div class="container">
+      <p>© {new Date().getFullYear()} Altera Terra. <a href={`${__base}/directions/e-cinema/enquire/#houses`}>Our houses</a>.</p>
+      <p>Paris · Madrid · Athens</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    toggle?.addEventListener("click", () => {
+      const open = menu?.getAttribute("data-open") === "true";
+      menu?.setAttribute("data-open", String(!open));
+      toggle.setAttribute("aria-expanded", String(!open));
+    });
+  </script>
+</body>
+</html>

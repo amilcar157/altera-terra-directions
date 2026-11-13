@@ -1,0 +1,223 @@
+---
+const __rawBase = import.meta.env.BASE_URL;
+const __base = __rawBase.endsWith("/") ? __rawBase.slice(0, -1) : __rawBase;
+import SEOHead from "../../../components/SEOHead.astro";
+import LangSwitcher from "../../../components/LangSwitcher.astro";
+import FCarnetFonts from "../../../components/fonts/FCarnetFonts.astro";
+import "../../../styles/base.css";
+import "../../../styles/f-carnet.css";
+import {
+  TAGLINE,
+  MOTTO_LATIN,
+  PILLARS,
+  OFFER_STATEMENT,
+  HOUSES,
+  HOUSES_STRIP_LINE,
+  HOUSES_STRIP_SUB,
+  CIRCLE,
+  CTA_PRIMARY,
+  TESTIMONIAL_SOURCE,
+  JOURNEYS,
+} from "../../../data/brand";
+import { PHOTOS, unsplashUrl, unsplashSrcSet } from "../../../data/images";
+
+const romanNumerals = ["I", "II", "III", "IV", "V"];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SEOHead
+    title="Altera Terra — Carnet de Voyage | A private travel journal"
+    description="Altera Terra composes ad hoc journeys and an art of living for a private clientele, from houses in Paris, Madrid and Athens. Travel Design, Experiences, Private Charters, Lifestyle & Concierge, Fine Art Sourcing."
+    path="/directions/f-carnet/"
+  />
+  <FCarnetFonts />
+</head>
+<body class="dir-f">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="container">
+      <a href={`${__base}/directions/f-carnet/`} class="wordmark">Altera Terra <em>Carnet</em></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href={`${__base}/directions/f-carnet/`}>Home</a>
+        <a href={`${__base}/directions/f-carnet/journey/`}>Journey</a>
+        <a href={`${__base}/directions/f-carnet/enquire/`}>Enquire</a>
+      </nav>
+      <div class="nav-right">
+        <LangSwitcher current="en" />
+        <button class="hamburger" aria-expanded="false" aria-controls="mobile-menu" id="menu-toggle">
+          <span class="sr-only">Open menu</span>
+          ☰
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="mobile-menu" data-open="false" aria-label="Mobile">
+      <a href={`${__base}/directions/f-carnet/`}>Home</a>
+      <a href={`${__base}/directions/f-carnet/journey/`}>Journey</a>
+      <a href={`${__base}/directions/f-carnet/enquire/`}>Enquire</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="cover">
+      <img
+        src={unsplashUrl(PHOTOS.fHero.id, 1600)}
+        srcset={unsplashSrcSet(PHOTOS.fHero.id, [640, 960, 1280, 1600, 1920])}
+        sizes="100vw"
+        alt="A blue door set in a whitewashed wall on a Cycladic island"
+        loading="eager"
+        width="1600"
+        height="1067"
+      />
+      <div class="container cover-content">
+        <p class="kicker">The Carnet — Issue No. 1</p>
+        <h1>{TAGLINE}</h1>
+        <p class="standfirst">{MOTTO_LATIN} — notes from a collective that designs journeys the way a magazine designs a feature: slowly, and once.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="article">
+        <p class="byline">The Atelier Notebook</p>
+        <hr class="masthead-rule" />
+        <div class="article-grid">
+          <div class="article-body">
+            <h2>A house in three cities</h2>
+            <p>
+              We keep rooms in Paris, Madrid and Athens — not as destinations, but as where our clients
+              already live. The journeys themselves go everywhere: Kyoto in the quiet season, a camp
+              moved twice across the Mara, an island with no ferry schedule.
+            </p>
+            <p>Every case is composed once, for one party, and never repeated.</p>
+          </div>
+          <figure class="figure">
+            <img
+              src={unsplashUrl(PHOTOS.fTable.id, 800)}
+              srcset={unsplashSrcSet(PHOTOS.fTable.id, [400, 600, 800, 1000])}
+              sizes="(min-width: 860px) 50vw, 100vw"
+              alt="A long table set with flowers for an evening gathering"
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+            <figcaption>An evening table, composed for a party of twelve.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="article" aria-labelledby="pillars-heading">
+        <p class="byline">In This Issue</p>
+        <hr class="masthead-rule" />
+        <h2 id="pillars-heading">Five pillars of an extraordinary life</h2>
+        <p style="margin-top: 0.75rem; max-width: 60ch;">{OFFER_STATEMENT}</p>
+        <ul class="contents-list" style="margin-top: 1.5rem;">
+          {PILLARS.map((pillar, i) => (
+            <li>
+              <span class="num" aria-hidden="true">{romanNumerals[i]}</span>
+              <div>
+                <h3>{pillar.name}</h3>
+                <p>{pillar.line}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="article" aria-labelledby="journeys-heading">
+        <p class="byline">Field Notes</p>
+        <hr class="masthead-rule" />
+        <h2 id="journeys-heading" class="sr-only">Journeys we have composed</h2>
+
+        <div class="article-grid">
+          <figure class="figure">
+            <img
+              src={unsplashUrl(PHOTOS.fKyoto.id, 800)}
+              srcset={unsplashSrcSet(PHOTOS.fKyoto.id, [400, 600, 800, 1000])}
+              sizes="(min-width: 860px) 50vw, 100vw"
+              alt={JOURNEYS.kyoto.alt}
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+            <figcaption>{JOURNEYS.kyoto.place}</figcaption>
+          </figure>
+          <div class="article-body">
+            <h2>{JOURNEYS.kyoto.title}</h2>
+            <p>{JOURNEYS.kyoto.dek}</p>
+          </div>
+        </div>
+
+        <div class="article-grid reverse" style="margin-top: 2.5rem;">
+          <figure class="figure">
+            <img
+              src={unsplashUrl(PHOTOS.fSafari.id, 800)}
+              srcset={unsplashSrcSet(PHOTOS.fSafari.id, [400, 600, 800, 1000])}
+              sizes="(min-width: 860px) 50vw, 100vw"
+              alt={JOURNEYS.karo.alt}
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+            <figcaption>{JOURNEYS.karo.place}</figcaption>
+          </figure>
+          <div class="article-body">
+            <h2>{JOURNEYS.karo.title}</h2>
+            <p>{JOURNEYS.karo.dek}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="houses-strip" aria-labelledby="houses-heading">
+      <div class="container">
+        <p class="byline" style="color:#e4c3b8;">{HOUSES_STRIP_LINE}</p>
+        <h2 id="houses-heading">{HOUSES_STRIP_LINE}</h2>
+        <p style="max-width: 50ch; opacity: .85;">{HOUSES_STRIP_SUB}</p>
+        <ul class="houses-list">
+          {HOUSES.map((house) => (
+            <li>{house.city}<span class="note">{house.note}</span></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="pull-quote" aria-label="Client testimonial">
+        <blockquote>
+          <p>"It read like someone had been quietly paying attention to us for years."</p>
+          <cite>{TESTIMONIAL_SOURCE}</cite>
+        </blockquote>
+      </section>
+
+      <section class="article" aria-labelledby="circle-heading" style="border-bottom:none;">
+        <p class="byline">{CIRCLE.name}</p>
+        <hr class="masthead-rule" />
+        <h2 id="circle-heading">{CIRCLE.name}</h2>
+        <p style="max-width: 56ch;">{CIRCLE.line}</p>
+        <div style="margin-top: 1rem; display:flex; gap:1rem; flex-wrap: wrap;">
+          <a class="cta secondary" href={`${__base}/directions/f-carnet/enquire/#circle`}>{CIRCLE.cta}</a>
+          <a class="cta" href={`${__base}/directions/f-carnet/enquire/`}>{CTA_PRIMARY}</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="dir-f-footer">
+    <div class="container">
+      <p>© {new Date().getFullYear()} Altera Terra. <a href={`${__base}/directions/f-carnet/enquire/#houses`}>Our houses</a>.</p>
+      <p>Paris · Madrid · Athens</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    toggle?.addEventListener("click", () => {
+      const open = menu?.getAttribute("data-open") === "true";
+      menu?.setAttribute("data-open", String(!open));
+      toggle.setAttribute("aria-expanded", String(!open));
+    });
+  </script>
+</body>
+</html>

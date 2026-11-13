@@ -1,0 +1,399 @@
+.dir-e {
+  --ink: #05070a;
+  --ivory: #f5f3ee;
+  --brass: #9c8255;
+
+  background: var(--ink);
+  color: var(--ivory);
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+}
+
+.dir-e h1, .dir-e h2 {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  margin: 0;
+}
+
+.dir-e .meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+/* --- Nav --- */
+.dir-e .site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: background-color .3s ease;
+}
+.dir-e .site-nav.solid {
+  background: rgba(5,7,10,0.92);
+  border-bottom: 1px solid rgba(245,243,238,0.1);
+}
+.dir-e .site-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.25rem;
+}
+.dir-e .wordmark {
+  text-decoration: none;
+  color: var(--ivory);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.dir-e .nav-links { display: none; gap: 2rem; }
+.dir-e .nav-links a {
+  text-decoration: none;
+  color: var(--ivory);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.dir-e .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.dir-e .hamburger {
+  background: none;
+  border: 1px solid rgba(245,243,238,.4);
+  color: var(--ivory);
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+}
+.dir-e .mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: rgba(5,7,10,0.97);
+}
+.dir-e .mobile-menu[data-open="true"] { display: flex; }
+.dir-e .mobile-menu a { color: var(--ivory); text-decoration: none; font-size: 1.1rem; }
+
+@media (min-width: 960px) {
+  .dir-e .nav-links { display: flex; }
+  .dir-e .hamburger { display: none; }
+  .dir-e .mobile-menu { display: none !important; }
+}
+
+/* --- Scenes --- */
+.dir-e .scene {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.dir-e .scene img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dir-e .scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5,7,10,.15) 0%, rgba(5,7,10,.75) 100%);
+}
+.dir-e .scene-content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+}
+.dir-e .scene-content .headline {
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.1;
+  margin: 0.5rem 0;
+}
+.dir-e .scene-content .dek {
+  font-size: 1rem;
+  max-width: 40ch;
+  opacity: 0.9;
+}
+
+.dir-e .scene.hero .scene-content { text-align: left; }
+
+/* --- Pillars scene (list, no cards) --- */
+.dir-e .pillars-scene {
+  position: relative;
+  padding: 6rem 0;
+  background: var(--ink);
+}
+.dir-e .pillars-list {
+  display: grid;
+  gap: 1.5rem;
+}
+.dir-e .pillars-list li {
+  border-top: 1px solid rgba(245,243,238,.15);
+  padding-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.dir-e .pillars-list h3 {
+  font-family: "Fraunces", serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0;
+}
+.dir-e .pillars-list .sr-only + .cta-wrap { margin-top: 2rem; }
+
+/* --- Journeys as scenes within a strip --- */
+.dir-e .journeys-strip {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .dir-e .journeys-strip { grid-template-columns: repeat(3, 1fr); }
+}
+.dir-e .journey-scene {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  overflow: hidden;
+}
+.dir-e .journey-scene img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.dir-e .journey-scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5,7,10,0) 40%, rgba(5,7,10,.85) 100%);
+}
+.dir-e .journey-scene .label {
+  position: relative;
+  z-index: 1;
+}
+.dir-e .journey-scene .label .place {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.dir-e .journey-scene .label h3 {
+  font-size: 1.3rem;
+  margin: 0.3rem 0 0;
+}
+
+/* --- Houses --- */
+.dir-e .houses-strip {
+  padding: 5rem 0;
+  text-align: center;
+  border-top: 1px solid rgba(245,243,238,.1);
+}
+.dir-e .houses-list {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.dir-e .houses-list li {
+  font-family: "Fraunces", serif;
+  font-size: 1.2rem;
+}
+
+/* --- Circle + CTA --- */
+.dir-e .circle-scene, .dir-e .testimonial-scene {
+  padding: 5rem 0;
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+}
+.dir-e .cta {
+  display: inline-block;
+  margin-top: 1.5rem;
+  text-decoration: none;
+  color: var(--ivory);
+  border-bottom: 1px solid var(--brass);
+  padding-bottom: 0.3rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.dir-e .cta.secondary { opacity: 0.8; }
+
+.dir-e .testimonial-scene blockquote {
+  font-family: "Fraunces", serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0;
+}
+.dir-e .testimonial-scene cite {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  font-style: normal;
+}
+
+footer.dir-e-footer {
+  border-top: 1px solid rgba(245,243,238,.1);
+  padding-block: 2.5rem;
+  font-size: 0.78rem;
+  opacity: 0.75;
+}
+footer.dir-e-footer .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-between;
+}
+@media (min-width: 720px) {
+  footer.dir-e-footer .container { flex-direction: row; }
+}
+
+/* --- Journey detail page --- */
+.dir-e .journey-page-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 0;
+}
+.dir-e .journey-page-hero img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.dir-e .journey-page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5,7,10,0) 30%, rgba(5,7,10,.88) 100%);
+}
+.dir-e .journey-page-hero-content {
+  position: relative;
+  z-index: 1;
+  padding-block: 3rem;
+  max-width: 760px;
+}
+.dir-e .journey-page-hero-content h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: 0.5rem 0 0; }
+
+.dir-e .content-section { padding-block: 3.5rem; }
+.dir-e .content-section p { max-width: 60ch; }
+
+.dir-e .pillar-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  padding: 0;
+}
+.dir-e .pillar-chips li {
+  border: 1px solid rgba(245,243,238,.35);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+}
+
+.dir-e .moments-list { display: grid; gap: 2rem; max-width: 68ch; padding: 0; margin-top: 2rem; }
+.dir-e .moment {
+  border-top: 1px solid rgba(245,243,238,.15);
+  padding-top: 1.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+}
+.dir-e .moment .num {
+  font-family: "Fraunces", serif;
+  color: var(--brass);
+  font-size: 1.4rem;
+}
+.dir-e .moment h3 { font-family: "Fraunces", serif; font-weight: 500; font-size: 1.2rem; margin: 0 0 0.4rem; }
+.dir-e .moment p { margin: 0; opacity: 0.85; }
+
+/* --- Forms / Enquire --- */
+.dir-e .tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(245,243,238,.2);
+  margin-bottom: 2rem;
+}
+.dir-e .tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.9rem 1.5rem 0.9rem 0;
+  margin-right: 1.5rem;
+  font-family: "Fraunces", serif;
+  font-size: 1.05rem;
+  color: var(--ivory);
+  opacity: 0.5;
+  cursor: pointer;
+}
+.dir-e .tab-btn[aria-selected="true"] { opacity: 1; border-bottom-color: var(--brass); }
+.dir-e .tab-panel[hidden] { display: none; }
+
+.dir-e .field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.5rem; }
+.dir-e .field label {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.dir-e .field input, .dir-e .field textarea {
+  font: inherit;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(245,243,238,.3);
+  background: rgba(245,243,238,.04);
+  color: var(--ivory);
+}
+.dir-e .field textarea { min-height: 120px; resize: vertical; }
+.dir-e .field .hint { opacity: 0.5; text-transform: none; letter-spacing: normal; }
+.dir-e .field-row { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+@media (min-width: 640px) {
+  .dir-e .field-row { grid-template-columns: 1fr 1fr; }
+}
+.dir-e .checkbox-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+  opacity: 0.85;
+}
+.dir-e .checkbox-field input { margin-top: 0.3rem; }
+
+.dir-e .contact-alt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid rgba(245,243,238,.15);
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+}
+.dir-e .contact-alt a { color: var(--brass); text-decoration: underline; }
+
+.dir-e .confirmation {
+  border: 1px solid var(--brass);
+  padding: 2rem;
+  max-width: 50ch;
+}
+.dir-e .confirmation[hidden] { display: none; }
+
+.dir-e .houses-detail {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  margin-top: 1.5rem;
+}
+@media (min-width: 640px) {
+  .dir-e .houses-detail { grid-template-columns: repeat(3, 1fr); }
+}
+.dir-e .house-card { border: 1px solid rgba(245,243,238,.2); padding: 1.5rem; }
+.dir-e .house-card h3 { font-family: "Fraunces", serif; font-weight: 500; font-size: 1.1rem; }
+.dir-e .house-card p { margin: 0.4rem 0 0; opacity: 0.65; font-size: 0.85rem; }

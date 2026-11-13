@@ -1,0 +1,188 @@
+---
+const __rawBase = import.meta.env.BASE_URL;
+const __base = __rawBase.endsWith("/") ? __rawBase.slice(0, -1) : __rawBase;
+import SEOHead from "../../../components/SEOHead.astro";
+import LangSwitcher from "../../../components/LangSwitcher.astro";
+import ECinemaFonts from "../../../components/fonts/ECinemaFonts.astro";
+import "../../../styles/base.css";
+import "../../../styles/e-cinema.css";
+import {
+  TAGLINE,
+  MOTTO_LATIN,
+  PILLARS,
+  OFFER_STATEMENT,
+  HOUSES,
+  HOUSES_STRIP_LINE,
+  HOUSES_STRIP_SUB,
+  CIRCLE,
+  CTA_PRIMARY,
+  TESTIMONIAL_SOURCE,
+  JOURNEYS,
+} from "../../../data/brand";
+import { PHOTOS, unsplashUrl, unsplashSrcSet } from "../../../data/images";
+
+const journeyList = [
+  { ...JOURNEYS.kyoto, photo: PHOTOS.eKyoto },
+  { ...JOURNEYS.karo, photo: PHOTOS.eSafari },
+  { ...JOURNEYS.cyclades, photo: PHOTOS.eCyclades },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SEOHead
+    title="Altera Terra — Cinéma | For those drawn elsewhere"
+    description="Altera Terra composes ad hoc journeys and an art of living for a private clientele, from houses in Paris, Madrid and Athens. Travel Design, Experiences, Private Charters, Lifestyle & Concierge, Fine Art Sourcing."
+    path="/directions/e-cinema/"
+  />
+  <ECinemaFonts />
+</head>
+<body class="dir-e">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-nav" id="site-nav">
+    <div class="container">
+      <a href={`${__base}/directions/e-cinema/`} class="wordmark">Altera Terra</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href={`${__base}/directions/e-cinema/`}>Home</a>
+        <a href={`${__base}/directions/e-cinema/journey/`}>Journey</a>
+        <a href={`${__base}/directions/e-cinema/enquire/`}>Enquire</a>
+      </nav>
+      <div class="nav-right">
+        <LangSwitcher current="en" />
+        <button class="hamburger" aria-expanded="false" aria-controls="mobile-menu" id="menu-toggle">
+          <span class="sr-only">Open menu</span>
+          ☰
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="mobile-menu" data-open="false" aria-label="Mobile">
+      <a href={`${__base}/directions/e-cinema/`}>Home</a>
+      <a href={`${__base}/directions/e-cinema/journey/`}>Journey</a>
+      <a href={`${__base}/directions/e-cinema/enquire/`}>Enquire</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="scene hero">
+      <img
+        src={unsplashUrl(PHOTOS.eHero.id, 1600)}
+        srcset={unsplashSrcSet(PHOTOS.eHero.id, [640, 960, 1280, 1600, 1920])}
+        sizes="100vw"
+        alt="Aerial view of a Mediterranean cliff meeting the sea"
+        loading="eager"
+        width="1600"
+        height="1067"
+      />
+      <div class="container scene-content">
+        <h1 class="headline">{TAGLINE}</h1>
+        <p class="meta">{MOTTO_LATIN}</p>
+        <p class="dek sr-only">
+          Altera Terra is a private collective composing ad hoc journeys and an art of living,
+          from houses in Paris, Madrid and Athens, for clients travelling everywhere.
+        </p>
+      </div>
+    </section>
+
+    <section class="pillars-scene" aria-labelledby="pillars-heading">
+      <div class="container">
+        <p class="meta">Five pillars of an extraordinary life</p>
+        <h2 id="pillars-heading" class="sr-only">Five pillars of an extraordinary life</h2>
+        <p class="sr-only">{OFFER_STATEMENT}</p>
+        <ul class="pillars-list">
+          {PILLARS.map((pillar) => (
+            <li>
+              <h3>{pillar.name}</h3>
+              <span class="sr-only">{pillar.line}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="journeys-heading">
+      <h2 id="journeys-heading" class="sr-only">Journeys composed once, never repeated</h2>
+      <div class="journeys-strip">
+        {journeyList.map((journey) => (
+          <div class="journey-scene">
+            <img
+              src={unsplashUrl(journey.photo.id, 800)}
+              srcset={unsplashSrcSet(journey.photo.id, [400, 600, 800, 1000])}
+              sizes="(min-width: 900px) 33vw, 100vw"
+              alt={journey.alt}
+              loading="lazy"
+              width="800"
+              height="1000"
+            />
+            <div class="label">
+              <p class="place">{journey.place}</p>
+              <h3>{journey.title}</h3>
+              <span class="sr-only">{journey.dek}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="houses-strip" aria-labelledby="houses-heading">
+      <div class="container">
+        <p class="meta">{HOUSES_STRIP_LINE}</p>
+        <h2 id="houses-heading" class="sr-only">{HOUSES_STRIP_LINE}</h2>
+        <p class="sr-only">{HOUSES_STRIP_SUB}</p>
+        <ul class="houses-list">
+          {HOUSES.map((house) => <li>{house.city}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="circle-scene" aria-labelledby="circle-heading">
+      <div class="container">
+        <h2 id="circle-heading">{CIRCLE.name}</h2>
+        <p class="dek">{CIRCLE.line}</p>
+        <a class="cta secondary" href={`${__base}/directions/e-cinema/enquire/#circle`}>{CIRCLE.cta}</a>
+      </div>
+    </section>
+
+    <section class="testimonial-scene" aria-label="Client testimonial">
+      <div class="container">
+        <blockquote>
+          <p>"No one asked us what we wanted twice. They simply arrived at it."</p>
+          <cite>{TESTIMONIAL_SOURCE}</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="circle-scene" style="padding-top: 0;">
+      <div class="container">
+        <h2 class="sr-only">Begin the conversation</h2>
+        <a class="cta" href={`${__base}/directions/e-cinema/enquire/`}>{CTA_PRIMARY}</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="dir-e-footer">
+    <div class="container">
+      <p>© {new Date().getFullYear()} Altera Terra. <a href={`${__base}/directions/e-cinema/enquire/#houses`}>Our houses</a>.</p>
+      <p>Paris · Madrid · Athens</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    toggle?.addEventListener("click", () => {
+      const open = menu?.getAttribute("data-open") === "true";
+      menu?.setAttribute("data-open", String(!open));
+      toggle.setAttribute("aria-expanded", String(!open));
+    });
+
+    const nav = document.getElementById("site-nav");
+    const onScroll = () => {
+      if (window.scrollY > 40) nav?.classList.add("solid");
+      else nav?.classList.remove("solid");
+    };
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+---
+const __rawBase = import.meta.env.BASE_URL;
+const __base = __rawBase.endsWith("/") ? __rawBase.slice(0, -1) : __rawBase;
+import SEOHead from "../../../components/SEOHead.astro";
+import LangSwitcher from "../../../components/LangSwitcher.astro";
+import FCarnetFonts from "../../../components/fonts/FCarnetFonts.astro";
+import "../../../styles/base.css";
+import "../../../styles/f-carnet.css";
+import {
+  HOUSES,
+  CONTACT,
+  ENQUIRE_INTRO,
+  CIRCLE_INTRO,
+  GDPR_LINE,
+  NEWSLETTER_LINE,
+  CONFIRMATION_LINE,
+  CIRCLE,
+} from "../../../data/brand";
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SEOHead
+    title="Altera Terra — Carnet de Voyage | Enquire & The Circle"
+    description="Begin a private consultation with Altera Terra, or request an invitation to The Circle. No price list — a conversation first."
+    path="/directions/f-carnet/enquire/"
+  />
+  <FCarnetFonts />
+</head>
+<body class="dir-f">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="container">
+      <a href={`${__base}/directions/f-carnet/`} class="wordmark">Altera Terra <em>Carnet</em></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href={`${__base}/directions/f-carnet/`}>Home</a>
+        <a href={`${__base}/directions/f-carnet/journey/`}>Journey</a>
+        <a href={`${__base}/directions/f-carnet/enquire/`} aria-current="page">Enquire</a>
+      </nav>
+      <div class="nav-right">
+        <LangSwitcher current="en" />
+        <button class="hamburger" aria-expanded="false" aria-controls="mobile-menu" id="menu-toggle">
+          <span class="sr-only">Open menu</span>
+          ☰
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="mobile-menu" data-open="false" aria-label="Mobile">
+      <a href={`${__base}/directions/f-carnet/`}>Home</a>
+      <a href={`${__base}/directions/f-carnet/journey/`}>Journey</a>
+      <a href={`${__base}/directions/f-carnet/enquire/`}>Enquire</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="container" style="padding-top: 3rem;">
+      <p class="byline">Begin Here</p>
+      <h1>Enquire</h1>
+      <hr class="masthead-rule" />
+
+      <div class="tabs" role="tablist" aria-label="Enquiry type">
+        <button class="tab-btn" id="tab-consult" role="tab" aria-selected="true" aria-controls="panel-consult" type="button">
+          Private consultation
+        </button>
+        <button class="tab-btn" id="tab-circle" role="tab" aria-selected="false" aria-controls="panel-circle" type="button" tabindex="-1">
+          Join The Circle
+        </button>
+      </div>
+
+      <div id="panel-consult" role="tabpanel" aria-labelledby="tab-consult" class="tab-panel">
+        <p style="max-width: 56ch;">{ENQUIRE_INTRO}</p>
+
+        <form id="form-consult" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="phone">Phone / WhatsApp</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="destination">Destination or desire</label>
+            <input id="destination" name="destination" type="text" placeholder="A place in mind, or just a feeling" />
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="dates">Approximate dates</label>
+              <input id="dates" name="dates" type="text" placeholder="e.g. Late September" />
+            </div>
+            <div class="field">
+              <label for="travelers">Travelers</label>
+              <input id="travelers" name="travelers" type="text" placeholder="e.g. Two adults, two children" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="investment">Indicative investment <span class="hint">(optional)</span></label>
+            <input id="investment" name="investment" type="text" placeholder="A range is enough" />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message"></textarea>
+          </div>
+
+          <div class="checkbox-field">
+            <input id="gdpr" name="gdpr" type="checkbox" required />
+            <label for="gdpr">{GDPR_LINE}</label>
+          </div>
+          <div class="checkbox-field">
+            <input id="newsletter" name="newsletter" type="checkbox" />
+            <label for="newsletter">{NEWSLETTER_LINE}</label>
+          </div>
+
+          <button class="cta" type="submit">Request a consultation</button>
+        </form>
+
+        <div class="confirmation" id="confirmation-consult" hidden role="status">
+          <p>{CONFIRMATION_LINE}</p>
+        </div>
+      </div>
+
+      <div id="panel-circle" role="tabpanel" aria-labelledby="tab-circle" class="tab-panel" hidden>
+        <p style="max-width: 56ch;">{CIRCLE_INTRO}</p>
+
+        <form id="form-circle" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="circle-name">Name</label>
+              <input id="circle-name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="circle-email">Email</label>
+              <input id="circle-email" name="email" type="email" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="circle-phone">Phone / WhatsApp</label>
+            <input id="circle-phone" name="phone" type="tel" autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="circle-intro">How were you introduced to Altera Terra?</label>
+            <textarea id="circle-intro" name="introduction"></textarea>
+          </div>
+
+          <div class="checkbox-field">
+            <input id="circle-gdpr" name="gdpr" type="checkbox" required />
+            <label for="circle-gdpr">{GDPR_LINE}</label>
+          </div>
+          <div class="checkbox-field">
+            <input id="circle-newsletter" name="newsletter" type="checkbox" />
+            <label for="circle-newsletter">{NEWSLETTER_LINE}</label>
+          </div>
+
+          <button class="cta" type="submit">{CIRCLE.cta}</button>
+        </form>
+
+        <div class="confirmation" id="confirmation-circle" hidden role="status">
+          <p>{CONFIRMATION_LINE}</p>
+        </div>
+      </div>
+
+      <div class="contact-alt">
+        <p class="byline">Prefer another way?</p>
+        <a href={CONTACT.whatsapp}>{CONTACT.whatsappLabel}</a>
+        <a href={CONTACT.bookingHref}>{CONTACT.bookingLabel}</a>
+        <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+      </div>
+
+      <section id="houses" aria-labelledby="houses-heading" style="padding-block: 3.5rem;">
+        <p class="byline">Our Houses</p>
+        <hr class="masthead-rule" />
+        <h2 id="houses-heading">Paris, Madrid, Athens</h2>
+        <p style="max-width: 56ch;">
+          Where we live alongside our clients — not destinations themselves, but the three houses our
+          team works from.
+        </p>
+        <div class="houses-detail">
+          {HOUSES.map((house) => (
+            <div class="house-card">
+              <h3>{house.city}</h3>
+              <p>{house.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="dir-f-footer">
+    <div class="container">
+      <p>© {new Date().getFullYear()} Altera Terra. <a href="#houses">Our houses</a>.</p>
+      <p>Paris · Madrid · Athens</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    toggle?.addEventListener("click", () => {
+      const open = menu?.getAttribute("data-open") === "true";
+      menu?.setAttribute("data-open", String(!open));
+      toggle.setAttribute("aria-expanded", String(!open));
+    });
+
+    const tabs = [
+      { btn: document.getElementById("tab-consult"), panel: document.getElementById("panel-consult") },
+      { btn: document.getElementById("tab-circle"), panel: document.getElementById("panel-circle") },
+    ];
+
+    function selectTab(id: string) {
+      tabs.forEach(({ btn, panel }) => {
+        const active = btn?.id === id;
+        btn?.setAttribute("aria-selected", String(active));
+        btn?.setAttribute("tabindex", active ? "0" : "-1");
+        if (panel) panel.hidden = !active;
+      });
+    }
+
+    tabs.forEach(({ btn }) => {
+      btn?.addEventListener("click", () => selectTab(btn.id));
+    });
+
+    if (window.location.hash === "#circle") selectTab("tab-circle");
+
+    function handleSubmit(formId: string, confirmationId: string) {
+      const form = document.getElementById(formId) as HTMLFormElement | null;
+      const confirmation = document.getElementById(confirmationId);
+      form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        form.hidden = true;
+        if (confirmation) confirmation.hidden = false;
+      });
+    }
+    handleSubmit("form-consult", "confirmation-consult");
+    handleSubmit("form-circle", "confirmation-circle");
+  </script>
+</body>
+</html>

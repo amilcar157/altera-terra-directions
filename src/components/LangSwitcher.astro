@@ -1,0 +1,40 @@
+---
+import { LANGS } from "../data/brand";
+const { current = "en" } = Astro.props as { current?: string };
+const labels: Record<string, string> = { en: "EN", fr: "FR", es: "ES", el: "EL" };
+---
+<nav class="lang-switcher" aria-label="Language">
+  <ul>
+    {LANGS.map((code) => (
+      <li>
+        <a
+          href="#"
+          aria-current={code === current ? "true" : undefined}
+          data-lang={code}
+        >
+          {labels[code]}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .lang-switcher ul {
+    display: flex;
+    gap: 0.6rem;
+  }
+  .lang-switcher a {
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+  }
+  .lang-switcher a[aria-current="true"] {
+    opacity: 1;
+    text-decoration: underline;
+  }
+  .lang-switcher a:hover {
+    opacity: 1;
+  }
+</style>

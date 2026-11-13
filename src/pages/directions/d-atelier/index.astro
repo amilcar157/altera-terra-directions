@@ -1,0 +1,205 @@
+---
+const __rawBase = import.meta.env.BASE_URL;
+const __base = __rawBase.endsWith("/") ? __rawBase.slice(0, -1) : __rawBase;
+import SEOHead from "../../../components/SEOHead.astro";
+import LangSwitcher from "../../../components/LangSwitcher.astro";
+import DAtelierFonts from "../../../components/fonts/DAtelierFonts.astro";
+import "../../../styles/base.css";
+import "../../../styles/d-atelier.css";
+import {
+  TAGLINE,
+  MOTTO_LATIN,
+  PILLARS,
+  OFFER_STATEMENT,
+  HOUSES,
+  HOUSES_STRIP_LINE,
+  HOUSES_STRIP_SUB,
+  CIRCLE,
+  CTA_PRIMARY,
+  TESTIMONIAL_SOURCE,
+  JOURNEYS,
+} from "../../../data/brand";
+import { PHOTOS, unsplashUrl, unsplashSrcSet } from "../../../data/images";
+
+const journeyList = [
+  { ...JOURNEYS.kyoto, photo: PHOTOS.dKyoto },
+  { ...JOURNEYS.karo, photo: PHOTOS.dSafari },
+  { ...JOURNEYS.cyclades, photo: PHOTOS.dCyclades },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SEOHead
+    title="Altera Terra — Atelier | Private travel design, composed to order"
+    description="Altera Terra composes ad hoc journeys and an art of living for a private clientele, from houses in Paris, Madrid and Athens. Travel Design, Experiences, Private Charters, Lifestyle & Concierge, Fine Art Sourcing."
+    path="/directions/d-atelier/"
+  />
+  <DAtelierFonts />
+</head>
+<body class="dir-d">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="container">
+      <a href={`${__base}/directions/d-atelier/`} class="wordmark">
+        Altera Terra
+        <small>Atelier</small>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href={`${__base}/directions/d-atelier/`}>Home</a>
+        <a href={`${__base}/directions/d-atelier/journey/`}>Journey</a>
+        <a href={`${__base}/directions/d-atelier/enquire/`}>Enquire</a>
+      </nav>
+      <div class="nav-right">
+        <LangSwitcher current="en" />
+        <button class="hamburger" aria-expanded="false" aria-controls="mobile-menu" id="menu-toggle">
+          <span class="sr-only">Open menu</span>
+          ☰
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="mobile-menu" data-open="false" aria-label="Mobile">
+      <a href={`${__base}/directions/d-atelier/`}>Home</a>
+      <a href={`${__base}/directions/d-atelier/journey/`}>Journey</a>
+      <a href={`${__base}/directions/d-atelier/enquire/`}>Enquire</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <img
+        src={unsplashUrl(PHOTOS.dHero.id, 1600)}
+        srcset={unsplashSrcSet(PHOTOS.dHero.id, [640, 960, 1280, 1600, 1920])}
+        sizes="100vw"
+        alt="Boats resting in an Amalfi coast harbor, seen from the water"
+        loading="eager"
+        width="1600"
+        height="1067"
+      />
+      <div class="hero-content">
+        <p class="motto">{TAGLINE}</p>
+        <p class="motto-latin">{MOTTO_LATIN}</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="statement">
+        <span class="eyebrow">I. The Atelier</span>
+        <p>
+          We work from three houses and travel to every continent. Each journey is composed once, for one
+          family or one gathering of friends, and never repeated. There is no catalogue here — only a
+          conversation, and what it leads us to build.
+        </p>
+      </section>
+
+      <hr class="section-rule" />
+
+      <section aria-labelledby="pillars-heading">
+        <div class="section-head">
+          <span class="eyebrow">II. The Offer</span>
+          <h2 id="pillars-heading">Five pillars of an extraordinary life</h2>
+          <p>{OFFER_STATEMENT}</p>
+        </div>
+        <ul class="pillars-list">
+          {PILLARS.map((pillar, i) => (
+            <li class="pillar">
+              <span class="numeral" aria-hidden="true">{["I","II","III","IV","V"][i]}</span>
+              <div>
+                <h3>{pillar.name}</h3>
+                <p>{pillar.line}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <hr class="section-rule" />
+
+      <section aria-labelledby="journeys-heading">
+        <div class="section-head">
+          <span class="eyebrow">III. Journeys</span>
+          <h2 id="journeys-heading">Composed once, never repeated</h2>
+          <p>Three cases, each built from a single conversation. Composed to order — there is no price list, only the shape of what you need.</p>
+        </div>
+        <ul class="journeys-grid">
+          {journeyList.map((journey) => (
+            <li class="journey-card">
+              <div class="plate">
+                <img
+                  src={unsplashUrl(journey.photo.id, 640)}
+                  srcset={unsplashSrcSet(journey.photo.id, [320, 480, 640, 800])}
+                  sizes="(min-width: 720px) 33vw, 90vw"
+                  alt={journey.alt}
+                  loading="lazy"
+                  width="640"
+                  height="800"
+                />
+              </div>
+              <p class="place">{journey.place}</p>
+              <h3>{journey.title}</h3>
+              <p class="dek">{journey.dek}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+
+    <section class="houses-strip" aria-labelledby="houses-heading">
+      <div class="container">
+        <span class="eyebrow">IV. Where We Work From</span>
+        <h2 id="houses-heading">{HOUSES_STRIP_LINE}</h2>
+        <p>{HOUSES_STRIP_SUB}</p>
+        <ul class="houses-list">
+          {HOUSES.map((house) => (
+            <li>
+              {house.city}
+              <span class="note">{house.note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <div class="container">
+      <section aria-labelledby="circle-heading">
+        <div class="circle-block">
+          <span class="eyebrow">V. {CIRCLE.name}</span>
+          <h2 id="circle-heading">{CIRCLE.name}</h2>
+          <p>{CIRCLE.line}</p>
+          <a class="cta secondary" href={`${__base}/directions/d-atelier/enquire/#circle`}>{CIRCLE.cta}</a>
+        </div>
+      </section>
+
+      <section class="testimonial" aria-label="Client testimonial">
+        <blockquote>
+          <p>"They understood what we wanted before we had the words for it — and then went quiet and simply built it."</p>
+          <cite>{TESTIMONIAL_SOURCE}</cite>
+        </blockquote>
+      </section>
+
+      <section aria-labelledby="cta-heading" style="padding-bottom: 4rem;">
+        <h2 id="cta-heading" class="sr-only">Begin the conversation</h2>
+        <a class="cta" href={`${__base}/directions/d-atelier/enquire/`}>{CTA_PRIMARY}</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© {new Date().getFullYear()} Altera Terra. <a href={`${__base}/directions/d-atelier/enquire/#houses`}>Our houses</a>.</p>
+      <p class="cities"><span>Paris</span><span>Madrid</span><span>Athens</span></p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    toggle?.addEventListener("click", () => {
+      const open = menu?.getAttribute("data-open") === "true";
+      menu?.setAttribute("data-open", String(!open));
+      toggle.setAttribute("aria-expanded", String(!open));
+    });
+  </script>
+</body>
+</html>

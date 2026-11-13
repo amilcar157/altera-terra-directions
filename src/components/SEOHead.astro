@@ -1,0 +1,60 @@
+---
+const __rawBase = import.meta.env.BASE_URL;
+const __base = __rawBase.endsWith("/") ? __rawBase.slice(0, -1) : __rawBase;
+import { SITE_NAME } from "../data/brand";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string; // e.g. /directions/d-atelier/
+  image?: string;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const { title, description, path, image, jsonLd = [] } = Astro.props;
+const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://alteraterra.vip";
+const canonical = `${site}${__base}${path}`;
+
+const orgLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: site,
+  sameAs: ["https://www.instagram.com/terraaltera"],
+};
+
+const travelAgencyLd = {
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  name: SITE_NAME,
+  description,
+  url: canonical,
+  memberOf: {
+    "@type": "Organization",
+    name: "Virtuoso",
+  },
+};
+---
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<link rel="icon" type="image/svg+xml" href={`${__base}/favicon.svg`} />
+
+<link rel="alternate" hreflang="en" href={`${site}${path}`} />
+<link rel="alternate" hreflang="fr" href={`${site}${path}`} />
+<link rel="alternate" hreflang="es" href={`${site}${path}`} />
+<link rel="alternate" hreflang="el" href={`${site}${path}`} />
+<link rel="alternate" hreflang="x-default" href={`${site}${path}`} />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+{image && <meta property="og:image" content={image} />}
+<meta name="twitter:card" content="summary_large_image" />
+
+<script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(travelAgencyLd)} />
+{jsonLd.map((entry) => <script type="application/ld+json" set:html={JSON.stringify(entry)} />)}
