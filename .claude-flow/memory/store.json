@@ -1,0 +1,14 @@
+{
+  "entries": {
+    "cmd-1794574676406": {
+      "key": "cmd-1794574676406",
+      "value": "{\"command\":\"GH_PAGES=1\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-11-13T12:57:56.406Z",
+      "lastAccessed": "2026-11-13T12:57:56.406Z",
+      "accessCount": 0,
+      "expiresAt": "2026-12-13T12:57:56.406Z"
+    }
+  },
+  "version": "3.0.0"
+}
